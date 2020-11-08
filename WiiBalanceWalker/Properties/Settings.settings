@@ -1,0 +1,69 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WiiBalanceWalker.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ActionLeft" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Key A</Value>
+    </Setting>
+    <Setting Name="ActionRight" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Key D</Value>
+    </Setting>
+    <Setting Name="ActionForward" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Key W</Value>
+    </Setting>
+    <Setting Name="ActionBackward" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Key S</Value>
+    </Setting>
+    <Setting Name="ActionModifier" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Key LShiftKey</Value>
+    </Setting>
+    <Setting Name="ActionJump" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Key Space</Value>
+    </Setting>
+    <Setting Name="ActionDiagonalLeft" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Mouse Move X</Value>
+    </Setting>
+    <Setting Name="ActionDiagonalRight" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Mouse Move X</Value>
+    </Setting>
+    <Setting Name="AmountLeft" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">-15</Value>
+    </Setting>
+    <Setting Name="AmountRight" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="AmountForward" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">-15</Value>
+    </Setting>
+    <Setting Name="AmountBackward" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="AmountModifier" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="AmountJump" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="AmountDiagonalLeft" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">-15</Value>
+    </Setting>
+    <Setting Name="AmountDiagonalRight" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="TriggerLeftRight" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">8</Value>
+    </Setting>
+    <Setting Name="TriggerForwardBackward" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">9</Value>
+    </Setting>
+    <Setting Name="TriggerModifierLeftRight" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="TriggerModifierForwardBackward" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">16</Value>
+    </Setting>
+    <Setting Name="EnableJoystick" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
