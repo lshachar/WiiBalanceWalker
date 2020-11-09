@@ -37,7 +37,6 @@
             this.label_brDL = new System.Windows.Forms.Label();
             this.label_brDR = new System.Windows.Forms.Label();
             this.groupBox_RawWeight = new System.Windows.Forms.GroupBox();
-            this.sumup = new System.Windows.Forms.Label();
             this.label_rwBR = new System.Windows.Forms.Label();
             this.label_rwBL = new System.Windows.Forms.Label();
             this.label_rwTR = new System.Windows.Forms.Label();
@@ -108,8 +107,8 @@
             this.checkBox_StartupAutoConnect = new System.Windows.Forms.CheckBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.startupOptions = new System.Windows.Forms.GroupBox();
-            this.checkBox_AutoTare = new System.Windows.Forms.CheckBox();
             this.checkBox_StartMinimized = new System.Windows.Forms.CheckBox();
+            this.checkBox_AutoTare = new System.Windows.Forms.CheckBox();
             this.groupBox_RawWeight.SuspendLayout();
             this.groupBox_OffsetWeight.SuspendLayout();
             this.groupBox_OffsetWeightRatio.SuspendLayout();
@@ -191,7 +190,6 @@
             // 
             // groupBox_RawWeight
             // 
-            this.groupBox_RawWeight.Controls.Add(this.sumup);
             this.groupBox_RawWeight.Controls.Add(this.label_rwBR);
             this.groupBox_RawWeight.Controls.Add(this.label_rwBL);
             this.groupBox_RawWeight.Controls.Add(this.label_rwTR);
@@ -203,15 +201,6 @@
             this.groupBox_RawWeight.TabIndex = 3;
             this.groupBox_RawWeight.TabStop = false;
             this.groupBox_RawWeight.Text = "Raw Weight ";
-            // 
-            // sumup
-            // 
-            this.sumup.AutoSize = true;
-            this.sumup.Location = new System.Drawing.Point(66, 53);
-            this.sumup.Name = "sumup";
-            this.sumup.Size = new System.Drawing.Size(38, 13);
-            this.sumup.TabIndex = 1;
-            this.sumup.Text = "sumup";
             // 
             // label_rwBR
             // 
@@ -1060,17 +1049,6 @@
             this.startupOptions.TabStop = false;
             this.startupOptions.Text = "Startup Options";
             // 
-            // checkBox_AutoTare
-            // 
-            this.checkBox_AutoTare.AutoSize = true;
-            this.checkBox_AutoTare.Location = new System.Drawing.Point(6, 42);
-            this.checkBox_AutoTare.Name = "checkBox_AutoTare";
-            this.checkBox_AutoTare.Size = new System.Drawing.Size(201, 17);
-            this.checkBox_AutoTare.TabIndex = 1;
-            this.checkBox_AutoTare.Text = "Tare Balance Board after connection";
-            this.checkBox_AutoTare.UseVisualStyleBackColor = true;
-            this.checkBox_AutoTare.CheckedChanged += new System.EventHandler(this.checkBox_AutoTare_CheckedChanged);
-            // 
             // checkBox_StartMinimized
             // 
             this.checkBox_StartMinimized.AutoSize = true;
@@ -1081,6 +1059,17 @@
             this.checkBox_StartMinimized.Text = "Start Program Minimized";
             this.checkBox_StartMinimized.UseVisualStyleBackColor = true;
             this.checkBox_StartMinimized.CheckedChanged += new System.EventHandler(this.checkBox_StartMinimized_CheckedChanged);
+            // 
+            // checkBox_AutoTare
+            // 
+            this.checkBox_AutoTare.AutoSize = true;
+            this.checkBox_AutoTare.Location = new System.Drawing.Point(6, 42);
+            this.checkBox_AutoTare.Name = "checkBox_AutoTare";
+            this.checkBox_AutoTare.Size = new System.Drawing.Size(201, 17);
+            this.checkBox_AutoTare.TabIndex = 1;
+            this.checkBox_AutoTare.Text = "Tare Balance Board after connection";
+            this.checkBox_AutoTare.UseVisualStyleBackColor = true;
+            this.checkBox_AutoTare.CheckedChanged += new System.EventHandler(this.checkBox_AutoTare_CheckedChanged);
             // 
             // FormMain
             // 
@@ -1209,7 +1198,6 @@
         private System.Windows.Forms.CheckBox checkBox_EnableJoystick;
         private System.Windows.Forms.CheckBox checkBox_SendCGtoXY;
         private System.Windows.Forms.Button zeroout;
-        private System.Windows.Forms.Label sumup;
         private System.Windows.Forms.TextBox consoleBox;
         private System.Windows.Forms.CheckBox checkBox_Send4LoadSensors;
         private System.Windows.Forms.GroupBox groupBox_vJoy_output;

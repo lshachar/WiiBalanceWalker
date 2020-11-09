@@ -15,7 +15,6 @@ using System;
 using System.Text.RegularExpressions;
 using System.Timers;
 using System.Windows.Forms;
-//using VJoyLibrary;    // deprecated - vjoy by Headsoft
 using WiimoteLib;
 
 namespace WiiBalanceWalker
@@ -28,7 +27,6 @@ namespace WiiBalanceWalker
         ActionList actionList = new ActionList();
         Wiimote wiiDevice     = new Wiimote();
         DateTime jumpTime     = DateTime.UtcNow;
-        //VJoy joyDevice        = null;     // deprecated - vjoy by Headsoft
 
         bool setCenterOffset = false;
         bool resetCenterOffsetPossible = false;
@@ -49,10 +47,6 @@ namespace WiiBalanceWalker
             // Setup a timer which controls the rate at which updates are processed.
 
             infoUpdateTimer.Elapsed += new ElapsedEventHandler(infoUpdateTimer_Elapsed);
-
-            // Setup a timer which prevents a VJoy popup message. // deprecated - Headsoft vJoy
-
-            // joyResetTimer.Elapsed += new ElapsedEventHandler(joyResetTimer_Elapsed);     // deprecated - Headsoft vJoy
 
             // Load trigger settings.
 
@@ -200,7 +194,6 @@ namespace WiiBalanceWalker
                     if (checkBox_AutoTare.Checked)
                         zeroout.PerformClick();
 
-
                     break;
                 }
             }
@@ -246,9 +239,6 @@ namespace WiiBalanceWalker
             var rwBottomLeft  = wiiDevice.WiimoteState.BalanceBoardState.SensorValuesKg.BottomLeft;
             var rwBottomRight = wiiDevice.WiimoteState.BalanceBoardState.SensorValuesKg.BottomRight;
             var aButton       = wiiDevice.WiimoteState.ButtonState.A;
-
-            float temp = rwTopLeft + rwTopRight + rwBottomLeft + rwBottomRight; // todo temp, I already see it's working fine so should be deleted.
-            sumup.Text = temp.ToString("0.0");                                  // todo
 
             // The alternative .SensorValuesRaw is meaningless in terms of actual weight. not adjusted with 0KG, 17KG and 34KG calibration data.
             
@@ -468,11 +458,6 @@ namespace WiiBalanceWalker
 
                     if (Double.IsNaN(joyX)) joyX = 0.0;         // send the dead center value if not enough weight is on the board
                     if (Double.IsNaN(joyY)) joyY = 0.0;
-
-                    // Set new values.
-                    //joyDevice.SetXAxis(0, (short)joyX);   // deprecated - headsoft vJoy
-                    //joyDevice.SetYAxis(0, (short)joyY);
-                    //joyDevice.Update(0);
                 }
                 
                 if (!checkBox_Send4LoadSensors.Checked)                
@@ -483,36 +468,10 @@ namespace WiiBalanceWalker
                 
                 if (checkBox_ShowValuesInConsole.Checked)
                 {
-                    //Console.WriteLine(values, "formMain");
                     BalanceWalker.FormMain.consoleBoxWriteLine(values);
                 }
                 VJoyFeeder.Setjoystick((int)joyX, (int)joyY, (int)(rwTopLeft * 100), (int)(rwTopRight * 100), (int)(rwBottomLeft * 100), (int)(rwBottomRight * 100), aButton);
             }
-
-            /*                 
-                              // Deprecated - Headsoft's vjoy code
-                              {
-                                // Uses Int16 ( -32767 to +32767 ) where 0 is the center. Multiplied by 2 because realistic usage is between the 30-70% ratio.
-
-                                var joyX = (brX * 655.34 + -32767.0) * 2.0;
-                                var joyY = (brY * 655.34 + -32767.0) * 2.0;
-
-                                // Limit values to Int16, you cannot just (cast) or Convert.ToIn16() as the value '+ - sign' may invert.
-
-                                if (joyX < short.MinValue) joyX = short.MinValue;
-                                if (joyY < short.MinValue) joyY = short.MinValue;
-
-                                if (joyX > short.MaxValue) joyX = short.MaxValue;
-                                if (joyY > short.MaxValue) joyY = short.MaxValue;
-
-                                // Set new values.
-
-                                joyDevice.SetXAxis(0, (short)joyX);
-                                joyDevice.SetYAxis(0, (short)joyY);
-                                joyDevice.Update(0);
-                            }  // Deprecated - Headsoft's vjoy code
-            */
-
         }
 
         private void checkBox_EnableJoystick_CheckedChanged(object sender, EventArgs e)
@@ -534,46 +493,6 @@ namespace WiiBalanceWalker
             checkBox_SendCGtoXY.Enabled = status;
             checkBox_Send4LoadSensors.Enabled = status;
         }
-        /*     {
-                 // Start joystick emulator.
-
-                 try
-                 {
-                     joyDevice = new VJoy();
-                     joyDevice.Initialize();
-                     joyDevice.Reset();
-                     joyDevice.Update(0);
-                 }
-                 catch (Exception ex)
-                 {
-                     // VJoy.DLL missing from .EXE folder or project built as 'Any CPU' and DLL is 32-bit only.
-
-                     infoUpdateTimer.Enabled = false;
-                     MessageBox.Show(ex.Message, "VJoy Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                 }
-
-                 joyResetTimer.Enabled = true;
-
-                 // Show reminder ( if not being changed by load settings ) and save settings.
-
-                 var isChecked = ((CheckBox)sender).Checked;
-                 if (isChecked)
-                 {
-                     if (Properties.Settings.Default.EnableJoystick == false)
-                     {
-                         MessageBox.Show("Actions still apply! Set 'Do Nothing' for any movement conflicts.\r\n\r\nRequires Headsoft VJoy driver to be installed.", "Reminder", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                     }
-                 }
-                 Properties.Settings.Default.EnableJoystick = isChecked;
-                 Properties.Settings.Default.Save();
-             }*/  // Deprecated - Headsoft's vjoy code
-
-
-
-/*               void joyResetTimer_Elapsed(object sender, ElapsedEventArgs e) // Deprecated - Headsoft vjoy
-               {
-                   joyDevice.Initialize();   
-               }*/
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
