@@ -1,4 +1,6 @@
-﻿// This is the C# library provided with the Headsoft JVoy 1.2 SDK. Requires VJoy.DLL and build platform set to x86.
+﻿// deprecated - I'm using vJoy by Shaul Eizikovich (instead of Headsoft VJoy)
+
+// This is the C# library provided with the Headsoft VJoy 1.2 SDK. Requires VJoy.DLL and build platform set to x86.
 // http://headsoft.com.au/index.php?category=vjoy
 
 using System.Runtime.InteropServices;

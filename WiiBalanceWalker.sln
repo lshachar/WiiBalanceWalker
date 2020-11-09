@@ -1,20 +1,31 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WiiBalanceWalker", "WiiBalanceWalker\WiiBalanceWalker.csproj", "{6BAAAAB3-54E0-4D21-A891-1CD69CEB36AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6BAAAAB3-54E0-4D21-A891-1CD69CEB36AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BAAAAB3-54E0-4D21-A891-1CD69CEB36AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BAAAAB3-54E0-4D21-A891-1CD69CEB36AF}.Debug|x86.ActiveCfg = Debug|x86
 		{6BAAAAB3-54E0-4D21-A891-1CD69CEB36AF}.Debug|x86.Build.0 = Debug|x86
+		{6BAAAAB3-54E0-4D21-A891-1CD69CEB36AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BAAAAB3-54E0-4D21-A891-1CD69CEB36AF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6BAAAAB3-54E0-4D21-A891-1CD69CEB36AF}.Release|x86.ActiveCfg = Release|x86
 		{6BAAAAB3-54E0-4D21-A891-1CD69CEB36AF}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3FB759D5-0B91-49D2-AC4F-EA2C583F70F9}
 	EndGlobalSection
 EndGlobal

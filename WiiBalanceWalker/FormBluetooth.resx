@@ -117,11 +117,45 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label_Info2.Text" xml:space="preserve">
-    <value>- Sends a special pin code, so the device remembers the host bluetooth adapter, even if the batteries are removed.
-
-- So in future all you need to do is press the power button on the Wii device and connect while its light is flashing.
-
-- This option is highly recommended, but may fail on some computers, so is unticked by default.</value>
+  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="clipboardCopy.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABoAAAAYCAYAAADkgu3FAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEqSURBVEhLY0ADTCDC3t6eBYg5tLS02IjBMH3EArBiU1PT
+        63p6em9IwUA9Z8EmEAuAGuYB8X9Ssb6+/neoEcQBExOTQ1DN/6BCRANoEBIHsFlkZmbGBxS3AorZEYOB
+        au2BehSh2rEDdItAiQLI3ggVIwW/NjIyUgYbig2gWwTkN4PYUDGSsLGx8X2wodgAukVAxetgfKBcEiEM
+        DLIAoNrXUD2/wIZiA0DFKBYB6dXIfGIAUO0DqJ6fUCFMMGoRNgBUO2rRMLFoM1TRXxAfSNPGImBJYAO0
+        bBoQ94D4QMW0sQgdABUPY4uAwSlLCEOrlUdQPcRbBNQ8HaqJZAzU+w5qDGEAbAsIADVcxGYQAfwTWGW4
+        QY0hGmgAcRUQN/Dz8xODm4E4BKwTDhgYAFg5f8b4WZazAAAAAElFTkSuQmCC
+</value>
   </data>
+  <data name="label_Info2.Text" xml:space="preserve">
+    <value>Based on your bluetooth mac address, this is your special pin code. use this code when establishing connection with your wii balance board, so the device remembers the host bluetooth adapter, even if the batteries are removed.
+
+- In future connections all you would need to do is press the power button on the Wii device and connect while its light is flashing.
+
+- This option is highly recommended. If establishing the connection with the shown pin code fails, use an empty code (no code) to establish a temporary connection.</value>
+  </data>
+  <data name="label_Info1.Text" xml:space="preserve">
+    <value>- Removes all existing bluetooth devices with 'Nintendo' in the name.
+
+- Searching using "add a device" will not find devices already added, so attempting permanent sync or fixing broken entries requires their removal first.
+
+- If you still cannot find your device after using "remove existing", try uninstalling the bluetooth/HID drivers using device manager, and restart your computer.</value>
+  </data>
+  <data name="label_Info4.Text" xml:space="preserve">
+    <value>In order to pair your Wii balance board to your computer on Windows 10:
+
+- Press the red sync button in the battery compartment of your Wii device. The device light should be flashing. 
+
+- Go to control panel -&gt; Add a device
+
+- Select your nintendo balance board device.</value>
+  </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>122, 17</value>
+  </metadata>
 </root>

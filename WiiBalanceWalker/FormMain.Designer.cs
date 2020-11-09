@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.label_rwWT = new System.Windows.Forms.Label();
             this.button_Connect = new System.Windows.Forms.Button();
             this.label_brX = new System.Windows.Forms.Label();
@@ -35,6 +37,7 @@
             this.label_brDL = new System.Windows.Forms.Label();
             this.label_brDR = new System.Windows.Forms.Label();
             this.groupBox_RawWeight = new System.Windows.Forms.GroupBox();
+            this.sumup = new System.Windows.Forms.Label();
             this.label_rwBR = new System.Windows.Forms.Label();
             this.label_rwBL = new System.Windows.Forms.Label();
             this.label_rwTR = new System.Windows.Forms.Label();
@@ -51,9 +54,11 @@
             this.label_owrBL = new System.Windows.Forms.Label();
             this.label_owrBR = new System.Windows.Forms.Label();
             this.groupBox_General = new System.Windows.Forms.GroupBox();
+            this.zeroout = new System.Windows.Forms.Button();
             this.button_SetCenterOffset = new System.Windows.Forms.Button();
             this.button_ResetDefaults = new System.Windows.Forms.Button();
             this.button_BluetoothAddDevice = new System.Windows.Forms.Button();
+            this.checkBox_SendCGtoXY = new System.Windows.Forms.CheckBox();
             this.groupBox_BalanceRatio = new System.Windows.Forms.GroupBox();
             this.label_brDF = new System.Windows.Forms.Label();
             this.groupBox_BalanceRatioTriggers = new System.Windows.Forms.GroupBox();
@@ -67,7 +72,6 @@
             this.label_TLR = new System.Windows.Forms.Label();
             this.label_Status = new System.Windows.Forms.Label();
             this.groupBox_Actions = new System.Windows.Forms.GroupBox();
-            this.checkBox_EnableJoystick = new System.Windows.Forms.CheckBox();
             this.checkBox_DisableActions = new System.Windows.Forms.CheckBox();
             this.numericUpDown_ADR = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_ADL = new System.Windows.Forms.NumericUpDown();
@@ -93,6 +97,19 @@
             this.comboBox_AB = new System.Windows.Forms.ComboBox();
             this.comboBox_AR = new System.Windows.Forms.ComboBox();
             this.comboBox_AL = new System.Windows.Forms.ComboBox();
+            this.checkBox_EnableJoystick = new System.Windows.Forms.CheckBox();
+            this.consoleBox = new System.Windows.Forms.TextBox();
+            this.checkBox_Send4LoadSensors = new System.Windows.Forms.CheckBox();
+            this.groupBox_vJoy_output = new System.Windows.Forms.GroupBox();
+            this.checkBox_ShowValuesInConsole = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.VJoyIDUpDown = new System.Windows.Forms.NumericUpDown();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.checkBox_StartupAutoConnect = new System.Windows.Forms.CheckBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.startupOptions = new System.Windows.Forms.GroupBox();
+            this.checkBox_AutoTare = new System.Windows.Forms.CheckBox();
+            this.checkBox_StartMinimized = new System.Windows.Forms.CheckBox();
             this.groupBox_RawWeight.SuspendLayout();
             this.groupBox_OffsetWeight.SuspendLayout();
             this.groupBox_OffsetWeightRatio.SuspendLayout();
@@ -112,6 +129,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AF)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AL)).BeginInit();
+            this.groupBox_vJoy_output.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.VJoyIDUpDown)).BeginInit();
+            this.startupOptions.SuspendLayout();
             this.SuspendLayout();
             // 
             // label_rwWT
@@ -125,11 +145,11 @@
             // 
             // button_Connect
             // 
-            this.button_Connect.Location = new System.Drawing.Point(174, 76);
+            this.button_Connect.Location = new System.Drawing.Point(174, 82);
             this.button_Connect.Name = "button_Connect";
             this.button_Connect.Size = new System.Drawing.Size(183, 48);
             this.button_Connect.TabIndex = 0;
-            this.button_Connect.Text = "Connect to Wii balance board";
+            this.button_Connect.Text = "Connect to Wii Balance Board";
             this.button_Connect.UseVisualStyleBackColor = true;
             this.button_Connect.Click += new System.EventHandler(this.button_Connect_Click);
             // 
@@ -171,6 +191,7 @@
             // 
             // groupBox_RawWeight
             // 
+            this.groupBox_RawWeight.Controls.Add(this.sumup);
             this.groupBox_RawWeight.Controls.Add(this.label_rwBR);
             this.groupBox_RawWeight.Controls.Add(this.label_rwBL);
             this.groupBox_RawWeight.Controls.Add(this.label_rwTR);
@@ -181,7 +202,16 @@
             this.groupBox_RawWeight.Size = new System.Drawing.Size(150, 139);
             this.groupBox_RawWeight.TabIndex = 3;
             this.groupBox_RawWeight.TabStop = false;
-            this.groupBox_RawWeight.Text = "Raw Weight";
+            this.groupBox_RawWeight.Text = "Raw Weight ";
+            // 
+            // sumup
+            // 
+            this.sumup.AutoSize = true;
+            this.sumup.Location = new System.Drawing.Point(66, 53);
+            this.sumup.Name = "sumup";
+            this.sumup.Size = new System.Drawing.Size(38, 13);
+            this.sumup.TabIndex = 1;
+            this.sumup.Text = "sumup";
             // 
             // label_rwBR
             // 
@@ -329,24 +359,41 @@
             // 
             // groupBox_General
             // 
+            this.groupBox_General.Controls.Add(this.zeroout);
             this.groupBox_General.Controls.Add(this.button_SetCenterOffset);
             this.groupBox_General.Controls.Add(this.button_ResetDefaults);
             this.groupBox_General.Controls.Add(this.button_BluetoothAddDevice);
             this.groupBox_General.Controls.Add(this.button_Connect);
-            this.groupBox_General.Location = new System.Drawing.Point(257, 157);
+            this.groupBox_General.Location = new System.Drawing.Point(12, 157);
             this.groupBox_General.Name = "groupBox_General";
             this.groupBox_General.Size = new System.Drawing.Size(373, 136);
             this.groupBox_General.TabIndex = 0;
             this.groupBox_General.TabStop = false;
             this.groupBox_General.Text = "General";
             // 
+            // zeroout
+            // 
+            this.zeroout.Enabled = false;
+            this.zeroout.Location = new System.Drawing.Point(15, 28);
+            this.zeroout.Name = "zeroout";
+            this.zeroout.Size = new System.Drawing.Size(138, 26);
+            this.zeroout.TabIndex = 7;
+            this.zeroout.Text = "Tare Balance Board";
+            this.toolTip1.SetToolTip(this.zeroout, "Press this button while no weight is on the balance board, to reset all current r" +
+        "aw weight values to zero");
+            this.zeroout.UseVisualStyleBackColor = true;
+            this.zeroout.Click += new System.EventHandler(this.zeroout_Click);
+            // 
             // button_SetCenterOffset
             // 
-            this.button_SetCenterOffset.Location = new System.Drawing.Point(15, 26);
+            this.button_SetCenterOffset.Enabled = false;
+            this.button_SetCenterOffset.Location = new System.Drawing.Point(15, 59);
             this.button_SetCenterOffset.Name = "button_SetCenterOffset";
-            this.button_SetCenterOffset.Size = new System.Drawing.Size(138, 28);
+            this.button_SetCenterOffset.Size = new System.Drawing.Size(138, 34);
             this.button_SetCenterOffset.TabIndex = 2;
-            this.button_SetCenterOffset.Text = "Set balance as center";
+            this.button_SetCenterOffset.Text = "Set current balance as center";
+            this.toolTip1.SetToolTip(this.button_SetCenterOffset, "While standing or sitting on the balance board, click this button to set your cur" +
+        "rent balance point as center");
             this.button_SetCenterOffset.UseVisualStyleBackColor = true;
             this.button_SetCenterOffset.Click += new System.EventHandler(this.button_SetCenterOffset_Click);
             // 
@@ -354,21 +401,36 @@
             // 
             this.button_ResetDefaults.Location = new System.Drawing.Point(15, 96);
             this.button_ResetDefaults.Name = "button_ResetDefaults";
-            this.button_ResetDefaults.Size = new System.Drawing.Size(138, 28);
+            this.button_ResetDefaults.Size = new System.Drawing.Size(138, 34);
             this.button_ResetDefaults.TabIndex = 3;
-            this.button_ResetDefaults.Text = "Reset defaults and close";
+            this.button_ResetDefaults.Text = "Load default settings and exit";
             this.button_ResetDefaults.UseVisualStyleBackColor = true;
             this.button_ResetDefaults.Click += new System.EventHandler(this.button_ResetDefaults_Click);
             // 
             // button_BluetoothAddDevice
             // 
-            this.button_BluetoothAddDevice.Location = new System.Drawing.Point(174, 26);
+            this.button_BluetoothAddDevice.Location = new System.Drawing.Point(174, 29);
             this.button_BluetoothAddDevice.Name = "button_BluetoothAddDevice";
-            this.button_BluetoothAddDevice.Size = new System.Drawing.Size(183, 27);
+            this.button_BluetoothAddDevice.Size = new System.Drawing.Size(183, 46);
             this.button_BluetoothAddDevice.TabIndex = 1;
-            this.button_BluetoothAddDevice.Text = "Add bluetooth Wii device";
+            this.button_BluetoothAddDevice.Text = "Add/Remove bluetooth Wii device";
             this.button_BluetoothAddDevice.UseVisualStyleBackColor = true;
             this.button_BluetoothAddDevice.Click += new System.EventHandler(this.button_BluetoothAddDevice_Click);
+            // 
+            // checkBox_SendCGtoXY
+            // 
+            this.checkBox_SendCGtoXY.AutoSize = true;
+            this.checkBox_SendCGtoXY.Checked = true;
+            this.checkBox_SendCGtoXY.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_SendCGtoXY.Location = new System.Drawing.Point(6, 19);
+            this.checkBox_SendCGtoXY.Name = "checkBox_SendCGtoXY";
+            this.checkBox_SendCGtoXY.Size = new System.Drawing.Size(128, 17);
+            this.checkBox_SendCGtoXY.TabIndex = 5;
+            this.checkBox_SendCGtoXY.Text = "Send CG to X/Y axes";
+            this.toolTip1.SetToolTip(this.checkBox_SendCGtoXY, "Send your center of gravity (balance point) as an X/Y input, to the virtual joyst" +
+        "ick device.");
+            this.checkBox_SendCGtoXY.UseVisualStyleBackColor = true;
+            this.checkBox_SendCGtoXY.CheckedChanged += new System.EventHandler(this.checkBox_SendCGtoXY_CheckedChanged);
             // 
             // groupBox_BalanceRatio
             // 
@@ -403,7 +465,7 @@
             this.groupBox_BalanceRatioTriggers.Controls.Add(this.label_TMLR);
             this.groupBox_BalanceRatioTriggers.Controls.Add(this.label_TFB);
             this.groupBox_BalanceRatioTriggers.Controls.Add(this.label_TLR);
-            this.groupBox_BalanceRatioTriggers.Location = new System.Drawing.Point(12, 157);
+            this.groupBox_BalanceRatioTriggers.Location = new System.Drawing.Point(18, 260);
             this.groupBox_BalanceRatioTriggers.Name = "groupBox_BalanceRatioTriggers";
             this.groupBox_BalanceRatioTriggers.Size = new System.Drawing.Size(239, 136);
             this.groupBox_BalanceRatioTriggers.TabIndex = 1;
@@ -550,7 +612,7 @@
             // 
             // groupBox_Actions
             // 
-            this.groupBox_Actions.Controls.Add(this.checkBox_EnableJoystick);
+            this.groupBox_Actions.Controls.Add(this.groupBox_BalanceRatioTriggers);
             this.groupBox_Actions.Controls.Add(this.checkBox_DisableActions);
             this.groupBox_Actions.Controls.Add(this.numericUpDown_ADR);
             this.groupBox_Actions.Controls.Add(this.numericUpDown_ADL);
@@ -578,33 +640,21 @@
             this.groupBox_Actions.Controls.Add(this.comboBox_AL);
             this.groupBox_Actions.Location = new System.Drawing.Point(636, 12);
             this.groupBox_Actions.Name = "groupBox_Actions";
-            this.groupBox_Actions.Size = new System.Drawing.Size(296, 308);
+            this.groupBox_Actions.Size = new System.Drawing.Size(296, 437);
             this.groupBox_Actions.TabIndex = 2;
             this.groupBox_Actions.TabStop = false;
             this.groupBox_Actions.Text = "Actions";
             // 
-            // checkBox_EnableJoystick
-            // 
-            this.checkBox_EnableJoystick.AutoSize = true;
-            this.checkBox_EnableJoystick.Location = new System.Drawing.Point(184, 274);
-            this.checkBox_EnableJoystick.Name = "checkBox_EnableJoystick";
-            this.checkBox_EnableJoystick.Size = new System.Drawing.Size(100, 17);
-            this.checkBox_EnableJoystick.TabIndex = 1;
-            this.checkBox_EnableJoystick.Text = "Enable Joystick";
-            this.checkBox_EnableJoystick.UseVisualStyleBackColor = true;
-            this.checkBox_EnableJoystick.CheckedChanged += new System.EventHandler(this.checkBox_EnableJoystick_CheckedChanged);
-            // 
             // checkBox_DisableActions
             // 
             this.checkBox_DisableActions.AutoSize = true;
-            this.checkBox_DisableActions.Checked = true;
-            this.checkBox_DisableActions.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_DisableActions.Location = new System.Drawing.Point(18, 274);
+            this.checkBox_DisableActions.Location = new System.Drawing.Point(18, 407);
             this.checkBox_DisableActions.Name = "checkBox_DisableActions";
             this.checkBox_DisableActions.Size = new System.Drawing.Size(113, 17);
             this.checkBox_DisableActions.TabIndex = 0;
             this.checkBox_DisableActions.Text = "Disable All Actions";
             this.checkBox_DisableActions.UseVisualStyleBackColor = true;
+            this.checkBox_DisableActions.CheckedChanged += new System.EventHandler(this.checkBox_DisableActions_CheckedChanged);
             // 
             // numericUpDown_ADR
             // 
@@ -886,14 +936,163 @@
             this.comboBox_AL.Size = new System.Drawing.Size(125, 21);
             this.comboBox_AL.TabIndex = 2;
             // 
+            // checkBox_EnableJoystick
+            // 
+            this.checkBox_EnableJoystick.AutoSize = true;
+            this.checkBox_EnableJoystick.Location = new System.Drawing.Point(459, 455);
+            this.checkBox_EnableJoystick.Name = "checkBox_EnableJoystick";
+            this.checkBox_EnableJoystick.Size = new System.Drawing.Size(117, 17);
+            this.checkBox_EnableJoystick.TabIndex = 1;
+            this.checkBox_EnableJoystick.Tag = "";
+            this.checkBox_EnableJoystick.Text = "Enable vJoy output";
+            this.toolTip1.SetToolTip(this.checkBox_EnableJoystick, "Sends the data to vJoy driver");
+            this.checkBox_EnableJoystick.UseVisualStyleBackColor = true;
+            this.checkBox_EnableJoystick.CheckedChanged += new System.EventHandler(this.checkBox_EnableJoystick_CheckedChanged);
+            // 
+            // consoleBox
+            // 
+            this.consoleBox.Location = new System.Drawing.Point(12, 323);
+            this.consoleBox.Multiline = true;
+            this.consoleBox.Name = "consoleBox";
+            this.consoleBox.ReadOnly = true;
+            this.consoleBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.consoleBox.Size = new System.Drawing.Size(435, 198);
+            this.consoleBox.TabIndex = 7;
+            this.consoleBox.Text = "vJoy Console";
+            // 
+            // checkBox_Send4LoadSensors
+            // 
+            this.checkBox_Send4LoadSensors.AutoSize = true;
+            this.checkBox_Send4LoadSensors.Checked = true;
+            this.checkBox_Send4LoadSensors.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_Send4LoadSensors.Location = new System.Drawing.Point(6, 42);
+            this.checkBox_Send4LoadSensors.Name = "checkBox_Send4LoadSensors";
+            this.checkBox_Send4LoadSensors.Size = new System.Drawing.Size(156, 17);
+            this.checkBox_Send4LoadSensors.TabIndex = 9;
+            this.checkBox_Send4LoadSensors.Text = "Send 4 load sensors values";
+            this.toolTip1.SetToolTip(this.checkBox_Send4LoadSensors, resources.GetString("checkBox_Send4LoadSensors.ToolTip"));
+            this.checkBox_Send4LoadSensors.UseVisualStyleBackColor = true;
+            this.checkBox_Send4LoadSensors.CheckedChanged += new System.EventHandler(this.checkBox_Send4LoadSensors_CheckedChanged);
+            // 
+            // groupBox_vJoy_output
+            // 
+            this.groupBox_vJoy_output.Controls.Add(this.checkBox_ShowValuesInConsole);
+            this.groupBox_vJoy_output.Controls.Add(this.label1);
+            this.groupBox_vJoy_output.Controls.Add(this.VJoyIDUpDown);
+            this.groupBox_vJoy_output.Controls.Add(this.checkBox_Send4LoadSensors);
+            this.groupBox_vJoy_output.Controls.Add(this.checkBox_SendCGtoXY);
+            this.groupBox_vJoy_output.Location = new System.Drawing.Point(453, 326);
+            this.groupBox_vJoy_output.Name = "groupBox_vJoy_output";
+            this.groupBox_vJoy_output.Size = new System.Drawing.Size(177, 123);
+            this.groupBox_vJoy_output.TabIndex = 10;
+            this.groupBox_vJoy_output.TabStop = false;
+            this.groupBox_vJoy_output.Text = "vJoy output";
+            // 
+            // checkBox_ShowValuesInConsole
+            // 
+            this.checkBox_ShowValuesInConsole.AutoSize = true;
+            this.checkBox_ShowValuesInConsole.Location = new System.Drawing.Point(6, 65);
+            this.checkBox_ShowValuesInConsole.Name = "checkBox_ShowValuesInConsole";
+            this.checkBox_ShowValuesInConsole.Size = new System.Drawing.Size(138, 17);
+            this.checkBox_ShowValuesInConsole.TabIndex = 13;
+            this.checkBox_ShowValuesInConsole.Text = "Show values in console";
+            this.toolTip1.SetToolTip(this.checkBox_ShowValuesInConsole, "print the measured values to the vJoy Console");
+            this.checkBox_ShowValuesInConsole.UseVisualStyleBackColor = true;
+            this.checkBox_ShowValuesInConsole.CheckedChanged += new System.EventHandler(this.ShowValues_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 97);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(84, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "VJoy Device ID:";
+            this.toolTip1.SetToolTip(this.label1, "Leave this on 1, unless you\'re using multiple virtual joysticks, and would like t" +
+        "o change the enumeration for the wii balance board device.");
+            // 
+            // VJoyIDUpDown
+            // 
+            this.VJoyIDUpDown.Location = new System.Drawing.Point(88, 94);
+            this.VJoyIDUpDown.Maximum = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+            this.VJoyIDUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.VJoyIDUpDown.Name = "VJoyIDUpDown";
+            this.VJoyIDUpDown.Size = new System.Drawing.Size(35, 20);
+            this.VJoyIDUpDown.TabIndex = 11;
+            this.toolTip1.SetToolTip(this.VJoyIDUpDown, "Noramlly leave this on 1. Unless you have several virtual joystick devices config" +
+        "ured.");
+            this.VJoyIDUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // checkBox_StartupAutoConnect
+            // 
+            this.checkBox_StartupAutoConnect.AutoSize = true;
+            this.checkBox_StartupAutoConnect.Location = new System.Drawing.Point(6, 19);
+            this.checkBox_StartupAutoConnect.Name = "checkBox_StartupAutoConnect";
+            this.checkBox_StartupAutoConnect.Size = new System.Drawing.Size(201, 17);
+            this.checkBox_StartupAutoConnect.TabIndex = 0;
+            this.checkBox_StartupAutoConnect.Text = "Connect to Balance Board on startup";
+            this.toolTip1.SetToolTip(this.checkBox_StartupAutoConnect, "To save you from clicking \'Connect to Wii Balance Board\' each time you launch Wii" +
+        " Balance Walker");
+            this.checkBox_StartupAutoConnect.UseVisualStyleBackColor = true;
+            this.checkBox_StartupAutoConnect.CheckedChanged += new System.EventHandler(this.checkBox_StartupAutoConnect_CheckedChanged);
+            // 
+            // startupOptions
+            // 
+            this.startupOptions.Controls.Add(this.checkBox_StartMinimized);
+            this.startupOptions.Controls.Add(this.checkBox_AutoTare);
+            this.startupOptions.Controls.Add(this.checkBox_StartupAutoConnect);
+            this.startupOptions.Location = new System.Drawing.Point(392, 157);
+            this.startupOptions.Name = "startupOptions";
+            this.startupOptions.Size = new System.Drawing.Size(238, 136);
+            this.startupOptions.TabIndex = 12;
+            this.startupOptions.TabStop = false;
+            this.startupOptions.Text = "Startup Options";
+            // 
+            // checkBox_AutoTare
+            // 
+            this.checkBox_AutoTare.AutoSize = true;
+            this.checkBox_AutoTare.Location = new System.Drawing.Point(6, 42);
+            this.checkBox_AutoTare.Name = "checkBox_AutoTare";
+            this.checkBox_AutoTare.Size = new System.Drawing.Size(201, 17);
+            this.checkBox_AutoTare.TabIndex = 1;
+            this.checkBox_AutoTare.Text = "Tare Balance Board after connection";
+            this.checkBox_AutoTare.UseVisualStyleBackColor = true;
+            this.checkBox_AutoTare.CheckedChanged += new System.EventHandler(this.checkBox_AutoTare_CheckedChanged);
+            // 
+            // checkBox_StartMinimized
+            // 
+            this.checkBox_StartMinimized.AutoSize = true;
+            this.checkBox_StartMinimized.Location = new System.Drawing.Point(6, 65);
+            this.checkBox_StartMinimized.Name = "checkBox_StartMinimized";
+            this.checkBox_StartMinimized.Size = new System.Drawing.Size(139, 17);
+            this.checkBox_StartMinimized.TabIndex = 2;
+            this.checkBox_StartMinimized.Text = "Start Program Minimized";
+            this.checkBox_StartMinimized.UseVisualStyleBackColor = true;
+            this.checkBox_StartMinimized.CheckedChanged += new System.EventHandler(this.checkBox_StartMinimized_CheckedChanged);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 333);
+            this.ClientSize = new System.Drawing.Size(944, 533);
+            this.Controls.Add(this.startupOptions);
+            this.Controls.Add(this.groupBox_vJoy_output);
+            this.Controls.Add(this.checkBox_EnableJoystick);
+            this.Controls.Add(this.consoleBox);
             this.Controls.Add(this.groupBox_Actions);
             this.Controls.Add(this.label_Status);
-            this.Controls.Add(this.groupBox_BalanceRatioTriggers);
             this.Controls.Add(this.groupBox_BalanceRatio);
             this.Controls.Add(this.groupBox_General);
             this.Controls.Add(this.groupBox_OffsetWeightRatio);
@@ -903,7 +1102,7 @@
             this.MaximizeBox = false;
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Wii Balance Walker - Version 0.4";
+            this.Text = "Wii Balance Walker - Version 0.5";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.groupBox_RawWeight.ResumeLayout(false);
@@ -931,7 +1130,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AF)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AR)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AL)).EndInit();
+            this.groupBox_vJoy_output.ResumeLayout(false);
+            this.groupBox_vJoy_output.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.VJoyIDUpDown)).EndInit();
+            this.startupOptions.ResumeLayout(false);
+            this.startupOptions.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1002,6 +1207,21 @@
         private System.Windows.Forms.CheckBox checkBox_DisableActions;
         private System.Windows.Forms.Label label_owWT;
         private System.Windows.Forms.CheckBox checkBox_EnableJoystick;
+        private System.Windows.Forms.CheckBox checkBox_SendCGtoXY;
+        private System.Windows.Forms.Button zeroout;
+        private System.Windows.Forms.Label sumup;
+        private System.Windows.Forms.TextBox consoleBox;
+        private System.Windows.Forms.CheckBox checkBox_Send4LoadSensors;
+        private System.Windows.Forms.GroupBox groupBox_vJoy_output;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.NumericUpDown VJoyIDUpDown;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox checkBox_ShowValuesInConsole;
+        private System.Windows.Forms.GroupBox startupOptions;
+        private System.Windows.Forms.CheckBox checkBox_StartupAutoConnect;
+        private System.Windows.Forms.CheckBox checkBox_AutoTare;
+        private System.Windows.Forms.CheckBox checkBox_StartMinimized;
     }
 }
 

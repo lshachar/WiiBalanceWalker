@@ -11,6 +11,20 @@ namespace WiiBalanceWalker
         public FormBluetooth()
         {
             InitializeComponent();
+
+            try
+            {
+                using (var btClient = new BluetoothClient())
+                {
+                    var btPin = AddressToWiiPin(BluetoothRadio.PrimaryRadio.LocalAddress.ToString());
+                    btPinTextbox.Text = btPin.ToString();
+                    BalanceWalker.FormMain.consoleBoxWriteLine(btPin.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                label_Status.Text = "Error: " + ex.Message;
+            }
         }
 
         private void button_DeviceSearch_Click(object sender, EventArgs e)
@@ -26,16 +40,15 @@ namespace WiiBalanceWalker
                     // false true  true: finds broken entries, but even if powered off, so pairing attempts then crash.
                     // WORK-AROUND:
                     // Remove existing entries first, then find powered on entries.
-                    
+
                     var btIgnored = 0;
 
                     // Find remembered bluetooth devices.
 
-                    label_Status.Text = "Removing existing bluetooth devices...";
-                    label_Status.Refresh();
-
                     if (checkBox_RemoveExisting.Checked)
                     {
+                        label_Status.Text = "Removing existing bluetooth devices...";
+                        label_Status.Refresh();
                         var btExistingList = btClient.DiscoverDevices(255, false, true, false);
 
                         foreach (var btItem in btExistingList)
@@ -75,6 +88,7 @@ namespace WiiBalanceWalker
 
                             var btPin = AddressToWiiPin(BluetoothRadio.PrimaryRadio.LocalAddress.ToString());
 
+                            BalanceWalker.FormMain.consoleBoxWriteLine(btPin.ToString());
                             // Pin needs to be added before doing the pair request.
 
                             new BluetoothWin32Authentication(btItem.DeviceAddress, btPin);
@@ -131,12 +145,77 @@ namespace WiiBalanceWalker
             if (bluetoothAddress.Length != 12) throw new Exception("Invalid Bluetooth Address: " + bluetoothAddress);
 
             var bluetoothPin = "";
+            bool doubleZeroInAddr = false;
             for (int i = bluetoothAddress.Length - 2; i >= 0; i -= 2)
             {
                 string hex = bluetoothAddress.Substring(i, 2);
                 bluetoothPin += (char)Convert.ToInt32(hex, 16);
+                if (hex == "00") doubleZeroInAddr = true;
+            }
+            if (doubleZeroInAddr)
+            { 
+                doubleZeroMsgBox(bluetoothAddress);
+                return "Invalid bt MAC address";
             }
             return bluetoothPin;
+        }
+        private void doubleZeroMsgBox(string bluetoothAddress)
+        {
+            string address = bluetoothAddress.Substring(0,2);
+            for (int i = 2; i <= bluetoothAddress.Length - 2; i += 2)
+            {
+                address = address + ":" + bluetoothAddress.Substring(i, 2);
+            }
+            string caption = "Permanent PIN code could not be created for device: " + address;
+            string message = "Your bluetooth device MAC address (" + address +  ") contains \"00\" in it, which means permanent connection with special PIN code is not possible. (You can still connect to your wii balance board, but establishing the Bluetooth connection manually becomes annoying quickly.) To resolve this issue, you can change your bluetooth device MAC address. Use any address without \"00\" in it. I used this tool: https://macaddresschanger.com. click OK to visit URL.";
+            MessageBoxButtons buttons = MessageBoxButtons.OKCancel;
+            DialogResult result;
+            result = MessageBox.Show(message, caption, buttons);
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                System.Diagnostics.Process.Start("https://macaddresschanger.com");
+            }
+        }
+        
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            btPinTextbox.SelectAll();
+            btPinTextbox.Copy();
+        }
+
+        private void RemoveExisting_Click(object sender, EventArgs e)
+        {
+            ((Button)sender).Enabled = false;
+            var btRemoved = 0;
+            try
+            {
+                using (var btClient = new BluetoothClient())
+                {
+                    // Find remembered bluetooth devices.
+
+                    label_Status.Text = "Removing existing bluetooth devices...";
+                    label_Status.Refresh();
+                    var btExistingList = btClient.DiscoverDevices(255, false, true, false);
+
+                    foreach (var btItem in btExistingList)
+                    {
+                        if (!btItem.DeviceName.Contains("Nintendo")) continue;
+
+                        btRemoved++;
+                        BluetoothSecurity.RemoveDevice(btItem.DeviceAddress);
+                        btItem.SetServiceState(BluetoothService.HumanInterfaceDevice, false);
+                    }
+                }
+                label_Status.Text = "Finished. Removed: " + btRemoved + " device(s)";
+                label_Status.Refresh();
+            }
+            catch (Exception ex)
+            {
+                label_Status.Text = "Error: " + ex.Message;
+            }
+            ((Button)sender).Enabled = true;
+            
         }
     }
 }

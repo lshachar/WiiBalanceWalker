@@ -5,8 +5,9 @@ using System.Windows.Forms;
 
 namespace WiiBalanceWalker
 {
-    static class Program
+    static class BalanceWalker
     {
+        public static FormMain FormMain;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -15,7 +16,8 @@ namespace WiiBalanceWalker
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMain());
+            FormMain = new FormMain();
+            Application.Run(FormMain);
         }
     }
 }
