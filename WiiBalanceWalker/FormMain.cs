@@ -30,6 +30,7 @@ namespace WiiBalanceWalker
 
         bool setCenterOffset = false;
         bool resetCenterOffsetPossible = false;
+        int calibrationToggle = 32767;
 
         float naCorners     = 0f;
         float oaTopLeft     = 0f;
@@ -287,10 +288,14 @@ namespace WiiBalanceWalker
 
             var owWeight      = rwWeight < 0f ? 0f : rwWeight;
 
-            var owTopLeft     = rwTopLeft     -= naCorners;
-            var owTopRight    = rwTopRight    -= naCorners;
-            var owBottomLeft  = rwBottomLeft  -= naCorners;
-            var owBottomRight = rwBottomRight -= naCorners;
+            var owTopLeft     = rwTopLeft     - naCorners;
+            var owTopRight    = rwTopRight    - naCorners;
+            var owBottomLeft  = rwBottomLeft  - naCorners;
+            var owBottomRight = rwBottomRight - naCorners;
+            
+            //Console.WriteLine("rwTopLeft {0} owTopLeft {1}" , rwTopLeft, owTopLeft);
+            //Console.WriteLine(values, "formMain");
+            //Console.WriteLine("joyX {0} JoyY {1}",joyX, joyY);
 
             // Get offset that would make current values the center of mass.
 
@@ -300,6 +305,7 @@ namespace WiiBalanceWalker
                 resetCenterOffsetPossible = true;
 
                 var rwHighest = Math.Max(Math.Max(rwTopLeft, rwTopRight), Math.Max(rwBottomLeft, rwBottomRight));
+                rwHighest -= naCorners;
 
                 oaTopLeft     = rwHighest - rwTopLeft;
                 oaTopRight    = rwHighest - rwTopRight;
@@ -460,7 +466,14 @@ namespace WiiBalanceWalker
                     if (Double.IsNaN(joyY)) joyY = 0.0;
                 }
                 
-                if (!checkBox_Send4LoadSensors.Checked)                
+                if (checkBox_Send4LoadSensors.Checked)
+                {
+                    rwTopLeft *= 100;
+                    rwTopRight *= 100;
+                    rwBottomLeft *= 100;
+                    rwBottomRight *= 100;
+                }
+                else
                 {
                     rwTopLeft = 0; rwTopRight = 0; rwBottomLeft = 0; rwBottomRight = 0;
                 }
@@ -470,7 +483,21 @@ namespace WiiBalanceWalker
                 {
                     BalanceWalker.FormMain.consoleBoxWriteLine(values);
                 }
-                VJoyFeeder.Setjoystick((int)joyX, (int)joyY, (int)(rwTopLeft * 100), (int)(rwTopRight * 100), (int)(rwBottomLeft * 100), (int)(rwBottomRight * 100), aButton);
+
+                if (ticktack.Checked)
+                {
+                    rwTopLeft = rwTopRight = rwBottomLeft = rwBottomRight = calibrationToggle;
+                    //calibrationToggle ^= 32767;  -32768
+                    if (calibrationToggle > 0)
+                        calibrationToggle = -32768;
+                    else
+                        calibrationToggle = 32767;
+
+                    //calibrationToggle = -25;
+                    Console.WriteLine(calibrationToggle);
+                    //calibrationToggle = 0 ? calibrationToggle= 32767 : calibrationToggle=0;
+                }
+                VJoyFeeder.Setjoystick((int)joyX, (int)joyY, (int)(rwTopLeft), (int)(rwTopRight), (int)(rwBottomLeft), (int)(rwBottomRight), aButton);
             }
         }
 
@@ -595,6 +622,12 @@ namespace WiiBalanceWalker
             var isChecked = ((CheckBox)sender).Checked;
             Properties.Settings.Default.StartMinimized = isChecked;
             Properties.Settings.Default.Save();
+        }
+
+        private void button_vJoy_Calibrate_Click(object sender, EventArgs e)
+        {
+            var form = new FormVjoyCalibrate();
+            form.ShowDialog(this);
         }
     }
 }

@@ -109,6 +109,8 @@
             this.startupOptions = new System.Windows.Forms.GroupBox();
             this.checkBox_StartMinimized = new System.Windows.Forms.CheckBox();
             this.checkBox_AutoTare = new System.Windows.Forms.CheckBox();
+            this.button_vJoy_Calibrate = new System.Windows.Forms.Button();
+            this.ticktack = new System.Windows.Forms.CheckBox();
             this.groupBox_RawWeight.SuspendLayout();
             this.groupBox_OffsetWeight.SuspendLayout();
             this.groupBox_OffsetWeightRatio.SuspendLayout();
@@ -251,6 +253,9 @@
             this.groupBox_OffsetWeight.TabIndex = 4;
             this.groupBox_OffsetWeight.TabStop = false;
             this.groupBox_OffsetWeight.Text = "Offset Weight";
+            this.toolTip1.SetToolTip(this.groupBox_OffsetWeight, "Offset Weight values are never negative. \r\nThe lowest raw weight value of all tim" +
+        "es is remembered\r\n and subtracted from each of the current raw weight measuremen" +
+        "ts.");
             // 
             // label_owWT
             // 
@@ -928,7 +933,7 @@
             // checkBox_EnableJoystick
             // 
             this.checkBox_EnableJoystick.AutoSize = true;
-            this.checkBox_EnableJoystick.Location = new System.Drawing.Point(459, 455);
+            this.checkBox_EnableJoystick.Location = new System.Drawing.Point(459, 476);
             this.checkBox_EnableJoystick.Name = "checkBox_EnableJoystick";
             this.checkBox_EnableJoystick.Size = new System.Drawing.Size(117, 17);
             this.checkBox_EnableJoystick.TabIndex = 1;
@@ -965,6 +970,7 @@
             // 
             // groupBox_vJoy_output
             // 
+            this.groupBox_vJoy_output.Controls.Add(this.button_vJoy_Calibrate);
             this.groupBox_vJoy_output.Controls.Add(this.checkBox_ShowValuesInConsole);
             this.groupBox_vJoy_output.Controls.Add(this.label1);
             this.groupBox_vJoy_output.Controls.Add(this.VJoyIDUpDown);
@@ -972,7 +978,7 @@
             this.groupBox_vJoy_output.Controls.Add(this.checkBox_SendCGtoXY);
             this.groupBox_vJoy_output.Location = new System.Drawing.Point(453, 326);
             this.groupBox_vJoy_output.Name = "groupBox_vJoy_output";
-            this.groupBox_vJoy_output.Size = new System.Drawing.Size(177, 123);
+            this.groupBox_vJoy_output.Size = new System.Drawing.Size(177, 144);
             this.groupBox_vJoy_output.TabIndex = 10;
             this.groupBox_vJoy_output.TabStop = false;
             this.groupBox_vJoy_output.Text = "vJoy output";
@@ -1071,11 +1077,32 @@
             this.checkBox_AutoTare.UseVisualStyleBackColor = true;
             this.checkBox_AutoTare.CheckedChanged += new System.EventHandler(this.checkBox_AutoTare_CheckedChanged);
             // 
+            // button_vJoy_Calibrate
+            // 
+            this.button_vJoy_Calibrate.Location = new System.Drawing.Point(7, 115);
+            this.button_vJoy_Calibrate.Name = "button_vJoy_Calibrate";
+            this.button_vJoy_Calibrate.Size = new System.Drawing.Size(127, 23);
+            this.button_vJoy_Calibrate.TabIndex = 14;
+            this.button_vJoy_Calibrate.Text = "Calibrate Vjoy Device";
+            this.button_vJoy_Calibrate.UseVisualStyleBackColor = true;
+            this.button_vJoy_Calibrate.Click += new System.EventHandler(this.button_vJoy_Calibrate_Click);
+            // 
+            // ticktack
+            // 
+            this.ticktack.AutoSize = true;
+            this.ticktack.Location = new System.Drawing.Point(636, 491);
+            this.ticktack.Name = "ticktack";
+            this.ticktack.Size = new System.Drawing.Size(64, 17);
+            this.ticktack.TabIndex = 13;
+            this.ticktack.Text = "ticktack";
+            this.ticktack.UseVisualStyleBackColor = true;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 533);
+            this.Controls.Add(this.ticktack);
             this.Controls.Add(this.startupOptions);
             this.Controls.Add(this.groupBox_vJoy_output);
             this.Controls.Add(this.checkBox_EnableJoystick);
@@ -1210,6 +1237,8 @@
         private System.Windows.Forms.CheckBox checkBox_StartupAutoConnect;
         private System.Windows.Forms.CheckBox checkBox_AutoTare;
         private System.Windows.Forms.CheckBox checkBox_StartMinimized;
+        private System.Windows.Forms.Button button_vJoy_Calibrate;
+        private System.Windows.Forms.CheckBox ticktack;
     }
 }
 

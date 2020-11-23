@@ -174,6 +174,9 @@ namespace WiiBalanceWalker
             ZR = 80;
 
             joystick.GetVJDAxisMax(id, HID_USAGES.HID_USAGE_X, ref maxval);
+            //Console.WriteLine("here1");
+            //bool bla= joystick.GetVJDAxisMax(id, HID_USAGES.HID_USAGE_X, ref maxval);
+            //BalanceWalker.FormMain.consoleBoxWriteLine(bla);
 
 #if ROBUST
             bool res;

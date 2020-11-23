@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6BAAAAB3-54E0-4D21-A891-1CD69CEB36AF}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WiiBalanceWalker</RootNamespace>
     <AssemblyName>WiiBalanceWalker</AssemblyName>
@@ -82,6 +82,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionManager.cs" />
+    <Compile Include="FormVjoyCalibrate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVjoyCalibrate.Designer.cs">
+      <DependentUpon>FormVjoyCalibrate.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormBluetooth.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVjoyCalibrate.resx">
+      <DependentUpon>FormVjoyCalibrate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
