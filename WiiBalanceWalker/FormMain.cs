@@ -468,10 +468,20 @@ namespace WiiBalanceWalker
                 
                 if (checkBox_Send4LoadSensors.Checked)
                 {
-                    rwTopLeft *= 100;
-                    rwTopRight *= 100;
-                    rwBottomLeft *= 100;
-                    rwBottomRight *= 100;
+                    //range = 0..32767
+                    // actual max: 150kg
+
+                    rwTopLeft *= 200;
+                    rwTopRight *= 200;
+                    rwBottomLeft *= 200;
+                    rwBottomRight *= 200;
+
+                    // https://vjoy.freeforums.net/thread/15/axis-value-range
+                    // http://vjoystick.sourceforge.net/joomla256.02/index.php/forum/4-Help/989-unexpected-value-range-on-axes
+                    rwTopLeft += 32768 / 2;
+                    rwTopRight += 32768 / 2;
+                    rwBottomLeft += 32768 / 2;
+                    rwBottomRight += 32768 / 2;
                 }
                 else
                 {
@@ -491,9 +501,9 @@ namespace WiiBalanceWalker
                     if (calibrationToggle > 0)
                         calibrationToggle = -32768;
                     else
-                        calibrationToggle = 32767;
+                        calibrationToggle = 65535;
 
-                    //calibrationToggle = -25;
+                    calibrationToggle = -1000;
                     Console.WriteLine(calibrationToggle);
                     //calibrationToggle = 0 ? calibrationToggle= 32767 : calibrationToggle=0;
                 }
