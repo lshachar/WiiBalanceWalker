@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionManager.cs" />
+    <Compile Include="SerialRead.cs" />
     <Compile Include="FormVjoyCalibrate.cs">
       <SubType>Form</SubType>
     </Compile>
