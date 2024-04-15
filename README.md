@@ -20,3 +20,5 @@
 Get your compiled archive in the [Releases section](https://github.com/lshachar/Wiibalancewalker/releases)<br/>
 For virtual joystick support, [install vJoy by Shaul Eizikovich](http://vjoystick.sourceforge.net/site/index.php/download-a-install/download)<br/>
 Feel free to [put some bread in my jar](https://paypal.me/lshachar?locale.x=en_US), only if you feel like it!
+
+A tip from user Bobbsterman - [Quick recommendation:](http://www.youtube.com/watch?v=crKoQWvGRok&ab_channel=EthanMuller) It was very useful for setting up the permanent pairing. Wasn't clear to me until watching this that permanent pairing MUST be done through the Windows Bluetooth Settings and not the Control Panel). Cheers!
