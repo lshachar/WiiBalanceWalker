@@ -14,7 +14,7 @@ namespace WiiBalanceWalker
         [STAThread]
         static void Main()
         {
-            SerialReadTest.SerialRead.SerialReadInit();
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             FormMain = new FormMain();
