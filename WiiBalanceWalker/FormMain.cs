@@ -16,6 +16,7 @@ using System.Text.RegularExpressions;
 using System.Timers;
 using System.Windows.Forms;
 using WiimoteLib;
+using System.IO;
 
 namespace WiiBalanceWalker
 {
@@ -36,6 +37,8 @@ namespace WiiBalanceWalker
         float oaTopRight    = 0f;
         float oaBottomLeft  = 0f;
         float oaBottomRight = 0f;
+
+        string recordingFile = null;
 
         public FormMain()
         {
@@ -228,6 +231,19 @@ namespace WiiBalanceWalker
             {
                 label_Status.Text = "DEVICE IS NOT A BALANCE BOARD...";
                 return;
+            }
+
+            // First of all, write the current data into the output file if we are currently recording.
+            if (recordingFile != null)
+			{
+                string data = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.fff")
+                    + ";" + wiiDevice.WiimoteState.BalanceBoardState.CenterOfGravity.X
+                    + ";" + wiiDevice.WiimoteState.BalanceBoardState.CenterOfGravity.Y
+                    + ";" + wiiDevice.WiimoteState.BalanceBoardState.SensorValuesKg.TopLeft
+                    + ";" + wiiDevice.WiimoteState.BalanceBoardState.SensorValuesKg.TopRight
+                    + ";" + wiiDevice.WiimoteState.BalanceBoardState.SensorValuesKg.BottomLeft
+                    + ";" + wiiDevice.WiimoteState.BalanceBoardState.SensorValuesKg.BottomRight;
+                File.AppendAllLines(recordingFile, new string[] { data });
             }
 
             // Get the current sensor KG values. (no temperature / latitude correction, can't set zero point properly.)
@@ -596,5 +612,38 @@ namespace WiiBalanceWalker
             Properties.Settings.Default.StartMinimized = isChecked;
             Properties.Settings.Default.Save();
         }
-    }
+
+		private void button_RecordingToggle_Click(object sender, EventArgs e)
+		{
+            if (recordingFile == null)
+			{
+                // Start the recording.
+                string fileName = DateTime.Now.ToString("yyyy-MM-dd-T-HH-mm-ss") + ".csv";
+                // First write the file header, only then set the variable.
+                string header = "PC timestamp;Center of mass (X);Center of mass (Y);Top left (kg);Top right (kg);Bottom left (kg);Bottom right (kg)";
+                File.WriteAllLines(fileName, new string[] { header });
+                recordingFile = fileName;
+                // Update the UI:
+                button_RecordingToggle.Text = "Stop";
+                groupBox_Recording.BackColor = System.Drawing.Color.Red;
+                label_RecordingFile.Text = "Output file:\r\n" + recordingFile;
+                string data = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.fff")
+                    + ";" + 0.34325723854781f
+                    + ";" + wiiDevice.WiimoteState.BalanceBoardState.CenterOfGravity.Y
+                    + ";" + wiiDevice.WiimoteState.BalanceBoardState.SensorValuesKg.TopLeft
+                    + ";" + wiiDevice.WiimoteState.BalanceBoardState.SensorValuesKg.TopRight
+                    + ";" + wiiDevice.WiimoteState.BalanceBoardState.SensorValuesKg.BottomLeft
+                    + ";" + wiiDevice.WiimoteState.BalanceBoardState.SensorValuesKg.BottomRight;
+                File.AppendAllLines(recordingFile, new string[] { data });
+            }
+            else
+			{
+                // Stop the recording.
+                recordingFile = null;
+                // Update the UI:
+                button_RecordingToggle.Text = "Start";
+                groupBox_Recording.BackColor = System.Drawing.Color.FromName("Control");
+            }
+		}
+	}
 }
